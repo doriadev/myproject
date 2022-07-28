@@ -8,9 +8,9 @@
     <article class="post">
         <header>
             <div>
-                <h1> {{ post.title }} </h1>
+                <h1> {{ post.ktitle }} </h1>
                 <div class="about">
-                    by {{ post.author }} on {{ post.created.strftime('%d/%m/%Y') }} 
+                    by {{ post.author.username }} on {{ post.created.strftime('%d/%m/%Y') }} 
                 </div>
             </div>
         </header>
@@ -19,5 +19,7 @@
     {% if not loop.last %}
         <hr>
     {% endif %}
+{% else %}
+    <p class="no-posts"> Opa, champz, não tem nenhum post pra exibir! </p>
 {% endfor %}
 {% endblock %}
