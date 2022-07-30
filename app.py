@@ -8,7 +8,7 @@ import os
 
 app = Flask("hey, budy")
 db_url = os.environ.get("DATABASE_URL") or "sqlite:///app.db"
-app.config["SQLALCHEMY_DATABASE_URI"] = db_url.replace("postgres", "postgressql")
+app.config["SQLALCHEMY_DATABASE_URI"] = db_url.replace("postgres", "postgresql")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = "pato"
 
@@ -45,7 +45,7 @@ db.create_all()
 
 @app.route("/")
 def index():
-    posts = Post.query.all()
+    posts = Post.query.order_by(-Posts.created).all()
     return render_template("index.html", posts=posts)
 
 @app.route('/register', methods=["GET", "POST"])
